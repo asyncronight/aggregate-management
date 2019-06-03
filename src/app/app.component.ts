@@ -31,11 +31,12 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.isAuthenticated) {
       this.auth.auth.signOut().then(() => this.router.navigate(['']));
     } else {
-      this.dialog
-        .open(FirebaseuiAngularLibraryComponent, { width: '300px' })
-        .componentInstance.signInSuccessWithAuthResultCallback.subscribe(() =>
-          this.dialog.closeAll()
-        );
+      const dialogRef = this.dialog.open(FirebaseuiAngularLibraryComponent, {
+        width: '300px'
+      });
+      dialogRef.componentInstance.signInSuccessWithAuthResultCallback
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe(() => dialogRef.close());
     }
   }
 

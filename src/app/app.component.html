@@ -1,16 +1,38 @@
+<mat-toolbar color="primary" class="toolbar mat-elevation-z4">
+  <button
+    *ngIf="isAuthenticated"
+    (click)="sidenav.toggle()"
+    matTooltip="Main menu"
+    class="menu-btn"
+    mat-icon-button
+    type="button"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div (click)="router.navigate(['/'])" class="brand">
+    Track It
+  </div>
+  <span class="fill-remaining-space"></span>
+  <mat-menu #appMenu="matMenu">
+    <button (click)="onSigninOrSignout()" mat-menu-item>
+      <ng-container *ngIf="isAuthenticated">Logout</ng-container>
+      <ng-container *ngIf="!isAuthenticated">Login</ng-container>
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </mat-menu>
+  <button
+    [matMenuTriggerFor]="appMenu"
+    class="menu-btn"
+    [matTooltip]="(auth.user | async)?.displayName"
+    color="default"
+    mat-mini-fab
+  >
+    <mat-icon>person</mat-icon>
+  </button>
+</mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="over">
     <mat-nav-list *ngIf="isAuthenticated">
-      <button
-        (click)="sidenav.close()"
-        matTooltip="Close menu"
-        class="menu-close-btn"
-        mat-icon-button
-        type="button"
-      >
-        <mat-icon>close</mat-icon>
-      </button>
-      <mat-divider></mat-divider>
       <mat-list-item routerLinkActive="active">
         <a matLine routerLink="/item1">Item 1</a>
         <button mat-icon-button>
@@ -36,39 +58,6 @@
     </mat-toolbar>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary" class="toolbar mat-elevation-z4">
-      <div *ngIf="isAuthenticated">
-        <button
-          (click)="sidenav.open()"
-          matTooltip="Main menu"
-          class="menu-btn"
-          mat-icon-button
-          type="button"
-        >
-          <mat-icon>menu</mat-icon>
-        </button>
-      </div>
-      <div (click)="router.navigate(['/'])" class="brand">
-        Track It
-      </div>
-      <span class="fill-remaining-space"></span>
-      <mat-menu #appMenu="matMenu">
-        <button (click)="onSigninOrSignout()" mat-menu-item>
-          <ng-container *ngIf="isAuthenticated">Logout</ng-container>
-          <ng-container *ngIf="!isAuthenticated">Login</ng-container>
-          <mat-icon>exit_to_app</mat-icon>
-        </button>
-      </mat-menu>
-      <button
-        [matMenuTriggerFor]="appMenu"
-        class="menu-btn"
-        [matTooltip]="(auth.user | async)?.displayName"
-        color="default"
-        mat-mini-fab
-      >
-        <mat-icon>person</mat-icon>
-      </button>
-    </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
