@@ -1,5 +1,7 @@
 # Track It
 
+[![Build Status](https://travis-ci.org/mecaworks/track-it.svg?branch=master)](https://travis-ci.org/mecaworks/track-it)
+
 A fully-implemented, zero-human-interaction solution to track construction machinery and report production status
 
 ## Development server
