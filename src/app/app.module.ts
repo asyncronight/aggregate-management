@@ -1,7 +1,13 @@
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import {
+  FirebaseUIModule,
+  firebase,
+  FirebaseuiAngularLibraryComponent
+} from 'firebaseui-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,9 +21,15 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    FirebaseUIModule.forRoot({
+      signInFlow: 'popup',
+      signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID]
+    })
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [FirebaseuiAngularLibraryComponent]
 })
 export class AppModule {}
