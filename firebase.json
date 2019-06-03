@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "public": "dist/track-it",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "predeploy": ["npm run lint", "npm run build -- --prod"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
