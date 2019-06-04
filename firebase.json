@@ -5,9 +5,19 @@
     "predeploy": ["npm run lint", "npm run build -- --prod"],
     "rewrites": [
       {
+        "source": "/api/data-receiver/**",
+        "function": "dataReceiver"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
+    ]
+  },
+  "functions": {
+    "predeploy": [
+      "npm --prefix functions run lint",
+      "npm --prefix functions run build"
     ]
   }
 }

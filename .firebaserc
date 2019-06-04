@@ -1,5 +1,5 @@
 {
   "projects": {
-    "production": "track-it-fe3c9"
+    "default": "track-it-fe3c9"
   }
 }
