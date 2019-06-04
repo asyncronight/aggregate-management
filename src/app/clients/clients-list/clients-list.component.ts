@@ -21,16 +21,7 @@ export class ClientsListComponent implements OnInit {
   ngOnInit() {
     this.clients$ = this.db
       .collection<Client>('clients')
-      .snapshotChanges()
-      .pipe(
-        map(cs =>
-          cs.map(c => {
-            const data = c.payload.doc.data();
-            const id = c.payload.doc.id;
-            return { id, ...data } as Client;
-          })
-        )
-      );
+      .valueChanges({ idField: 'id' });
   }
 
   openNewClientDialog() {
