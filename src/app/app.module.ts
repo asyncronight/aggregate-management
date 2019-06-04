@@ -6,10 +6,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { MaterialModule } from './material.module';
 import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
+import { AppMaterialModule } from './app-material.module';
+import { AppComponent } from './app.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
@@ -17,7 +17,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule,
+    AppMaterialModule,
     AppRoutingModule,
     FlexLayoutModule,
     FormsModule,
