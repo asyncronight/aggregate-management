@@ -27,10 +27,6 @@ mat-sidenav-content {
   font-size: 12px;
 }
 
-.footer i {
-  margin-left: 20px;
-}
-
 .toolbar {
   position: fixed;
   position: -webkit-sticky;

@@ -2,9 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { FirebaseuiAngularLibraryComponent } from 'firebaseui-angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @Component({
   selector: 'app-root',
@@ -31,12 +31,9 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.isAuthenticated) {
       this.auth.auth.signOut().then(() => this.router.navigate(['']));
     } else {
-      const dialogRef = this.dialog.open(FirebaseuiAngularLibraryComponent, {
-        width: '300px'
+      this.dialog.open(SignInComponent, {
+        width: '400px'
       });
-      dialogRef.componentInstance.signInSuccessWithAuthResultCallback
-        .pipe(takeUntil(this.ngUnsubscribe))
-        .subscribe(() => dialogRef.close());
     }
   }
 

@@ -1,0 +1,15 @@
+mat-form-field {
+  width: 100%;
+}
+
+.actions {
+  margin: 10px 0px 10px 0px;
+}
+
+mat-progress-spinner {
+  align-self: center;
+}
+
+.mat-dialog-title {
+  text-align: center;
+}

@@ -1,0 +1,62 @@
+<h1 mat-dialog-title>Login</h1>
+<div mat-dialog-content>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <mat-form-field>
+      <input
+        matInput
+        name="email"
+        ngModel
+        placeholder="Email"
+        email
+        required
+        #email
+      />
+      <mat-icon matSuffix>person</mat-icon>
+      <mat-error *ngIf="f.controls['email']?.hasError('required')">
+        This field is required
+      </mat-error>
+      <mat-error *ngIf="f.controls['email']?.hasError('email')">
+        Email must be valid
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        [type]="hide ? 'password' : 'text'"
+        matInput
+        name="password"
+        ngModel
+        placeholder="Password"
+        required
+      />
+      <mat-icon style="cursor: pointer;" (click)="hide = !hide" matSuffix>
+        {{ hide ? 'visibility_off' : 'visibility' }}
+      </mat-icon>
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+    <div fxLayout="column" fxLayoutAlign="space-around stretch" class="actions">
+      <mat-progress-spinner
+        *ngIf="loading"
+        [diameter]="30"
+        mode="indeterminate"
+      ></mat-progress-spinner>
+      <button
+        [disabled]="!f.valid"
+        *ngIf="!loading"
+        mat-raised-button
+        color="primary"
+        type="submit"
+      >
+        Login
+      </button>
+      <button
+        type="button"
+        *ngIf="!loading"
+        [disabled]="!f.controls['email']?.valid"
+        mat-button
+        (click)="onForget(f.controls['email']?.value)"
+      >
+        Reset password
+      </button>
+    </div>
+  </form>
+</div>
