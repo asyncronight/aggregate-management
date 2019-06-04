@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as cors from 'cors';
-import * as admin from 'firebase-admin';
+// import * as admin from 'firebase-admin';
 
 // Initialize an express app
 export const app: express.Application = express();
