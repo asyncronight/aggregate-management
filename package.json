@@ -1,6 +1,25 @@
 {
   "name": "track-it",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "A fully-implemented, zero-human-interaction solution to track construction machinery and report production status",
+  "contributors": [
+    {
+      "name": "Salah E. Loukili",
+      "email": "salah.loukili@gmail.com",
+      "url": "https://github.com/salah3x"
+    },
+    {
+      "name": "Hamza Kadar",
+      "email": "kadar.hamza@gmail.com",
+      "url": "https://github.com/kadarh"
+    }
+  ],
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mecaworks/track-it"
+  },
+  "homepage": "https://track-it.mecaworks.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
