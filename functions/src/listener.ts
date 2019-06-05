@@ -1,12 +1,14 @@
 import { Request, Response } from 'firebase-functions';
-import { firestore } from 'firebase-admin';
+import * as admin from 'firebase-admin';
+
+admin.initializeApp();
 
 /**
  * The data that arduino devices generate
  */
 interface Data {
   id: string;
-  timestamp: number;
+  timestamp: admin.firestore.Timestamp;
   value: number;
 }
 
@@ -19,6 +21,8 @@ interface Data {
  * - Authorization: [ApiKey] // The api key generated from the web console.
  *
  * Expected json body format: See the {@link Data} interface.
+ *
+ * Can also accept the same data submitted using url-encoded form data with key/value pairs
  */
 export const handler = async (req: Request, res: Response): Promise<void> => {
   console.debug({
@@ -32,16 +36,25 @@ export const handler = async (req: Request, res: Response): Promise<void> => {
     res.sendStatus(405);
     return;
   }
-  if (!req.body.id || !req.body.timestamp || !req.body.value) {
+  if (
+    !req.body.id ||
+    !req.body.timestamp ||
+    !req.body.value ||
+    isNaN(req.body.timestamp) ||
+    isNaN(req.body.value)
+  ) {
     res.sendStatus(400);
     return;
   }
   const data: Data = {
     id: req.body.id,
-    timestamp: req.body.timestamp,
-    value: req.body.value
+    timestamp: admin.firestore.Timestamp.fromMillis(
+      parseInt(req.body.timestamp)
+    ),
+    value: parseInt(req.body.value)
   };
-  await firestore()
+  await admin
+    .firestore()
     .collection('data')
     .add(data)
     .then(() => res.sendStatus(201))
