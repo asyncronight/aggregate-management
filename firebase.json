@@ -5,7 +5,7 @@
     "predeploy": ["npm run lint", "npm run build -- --prod"],
     "rewrites": [
       {
-        "source": "/api/data-receiver/**",
+        "source": "/api/data**",
         "function": "dataReceiver"
       },
       {
