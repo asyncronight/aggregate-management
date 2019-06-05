@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-
 import { Group } from 'src/app/models';
 
 @Component({
