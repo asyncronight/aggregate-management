@@ -10,9 +10,9 @@ export interface Group {
   name: string;
 }
 
-export class Camion {
+export class Truck {
   id?: string;
+  groupId: string;
   name: string;
   type: string;
-  groupId: string;
 }
