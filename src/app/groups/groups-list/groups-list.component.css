@@ -1,24 +1,23 @@
 .new-fab.mat-mini-fab {
-    position: fixed;
-    right: 25px;
-    bottom: 25px;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  table {
-    margin-left: 5%;
-    width: 90%;
-    margin-bottom: 30px;
-  }
-  
-  .mat-column-edit {
-    width: 30px;
-  }
-  
-  .mat-column-delete {
-    width: 30px;
-  }
-  
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+}
+
+h1 {
+  text-align: center;
+}
+
+table {
+  margin-left: 5%;
+  width: 90%;
+  margin-bottom: 30px;
+}
+
+.mat-column-edit {
+  width: 30px;
+}
+
+.mat-column-delete {
+  width: 30px;
+}

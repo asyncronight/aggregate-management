@@ -18,6 +18,4 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule
   ]
 })
-export class GroupMaterialModule {
-
-}
+export class GroupMaterialModule {}

@@ -18,4 +18,4 @@ import { GroupsListComponent } from './groups-list/groups-list.component';
     GroupsRoutingModule
   ]
 })
-export class GroupsModule { }
+export class GroupsModule {}
