@@ -9,10 +9,3 @@ export interface Group {
   clientId: string;
   name: string;
 }
-
-export class Camion {
-  id?: string;
-  name: string;
-  type: string;
-  groupId: string;
-}
