@@ -2,16 +2,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth.guard';
+import { GroupsListComponent } from './groups-list/groups-list.component';
 
 const routes: Routes = [
     {
       path: '',
-      component: null, // Todo : Change that after adding list component
+      component: GroupsListComponent,
       canActivate: [AuthGuard]
     }
   ];
 
-NgModule({
+@NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
   })
