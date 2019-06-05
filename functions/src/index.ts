@@ -1,4 +1,4 @@
-import * as functions from 'firebase-functions';
-import * as dataReceiverApp from './data-receiver/app';
+import { https } from 'firebase-functions';
+import { handler } from './listener';
 
-export const dataReceiver = functions.https.onRequest(dataReceiverApp.app);
+export const listener = https.onRequest(handler);

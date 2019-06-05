@@ -6,7 +6,7 @@
     "rewrites": [
       {
         "source": "/api/data**",
-        "function": "dataReceiver"
+        "function": "listener"
       },
       {
         "source": "**",
