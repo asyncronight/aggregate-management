@@ -1,8 +1,6 @@
 import { Request, Response } from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
-admin.initializeApp();
-
 /**
  * The data that arduino devices generate
  */
@@ -12,23 +10,11 @@ interface Data {
   value: number;
 }
 
-/**
- * ### Reuest handler: [POST] /api/data
- * Save device-generated data to firestore.
- *
- * Expected headers:
- * - Content-Type: application/json // So that the body got picked up & parsed.
- * - Authorization: [ApiKey] // The api key generated from the web console.
- *
- * Expected json body format: See the {@link Data} interface.
- *
- * Can also accept the same data submitted using url-encoded form data with key/value pairs
- */
-export const handler = async (req: Request, res: Response): Promise<void> => {
+export const handler = (req: Request, res: Response) => {
   console.debug({
     headers: {
       'Content-Type': req.headers['content-type'],
-      Authorization: req.headers.authorization ? '***' : ''
+      Authorization: !!req.headers.authorization
     },
     body: req.body
   });
@@ -53,7 +39,7 @@ export const handler = async (req: Request, res: Response): Promise<void> => {
     ),
     value: parseInt(req.body.value)
   };
-  await admin
+  admin
     .firestore()
     .collection('data')
     .add(data)
