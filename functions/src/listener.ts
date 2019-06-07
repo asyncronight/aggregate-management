@@ -1,14 +1,6 @@
 import { Request, Response } from 'firebase-functions';
 import * as admin from 'firebase-admin';
-
-/**
- * The data that arduino devices generate
- */
-interface Data {
-  id: string;
-  timestamp: admin.firestore.Timestamp;
-  value: number;
-}
+import { Data } from './models';
 
 export const handler = (req: Request, res: Response) => {
   console.debug({

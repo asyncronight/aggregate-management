@@ -1,9 +1,6 @@
 import { EventContext } from 'firebase-functions';
-import * as admin from 'firebase-admin';
-
-interface Report {
-  timestamp: admin.firestore.Timestamp;
-}
+// import * as admin from 'firebase-admin';
+import { Report } from './models';
 
 export const handler = (context: EventContext) => {
   const reports: Report[] = [];
