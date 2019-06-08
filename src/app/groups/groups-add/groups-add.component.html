@@ -16,16 +16,14 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>
-        clientId
-        <mat-icon matSuffix>ClientId</mat-icon>
+        Client Name
       </mat-label>
-
-      <mat-select matInput ngModel name="clientId">
-        <mat-option *ngFor="let food of clients$ | async" [value]="food.id">
-          {{ food.name }}
+      <mat-select ngModel name="clientId">
+        <mat-option *ngFor="let client of clients$ | async" [value]="client.id">
+          {{ client.name }}
         </mat-option>
       </mat-select>
-      <mat-error>Description is required</mat-error>
+      <mat-error>Client is required</mat-error>
     </mat-form-field>
     <div
       fxLayout="column"

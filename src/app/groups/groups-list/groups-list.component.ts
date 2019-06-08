@@ -13,8 +13,6 @@ import { GroupsAddComponent } from '../groups-add/groups-add.component';
 })
 export class GroupsListComponent implements OnInit {
   groups$: Observable<Group[]>;
-  clients$: Observable<Client[]>;
-
   displayedColumns = ['name', 'clientId', 'edit', 'delete'];
 
   constructor(private dialog: MatDialog, private db: AngularFirestore) {}
@@ -22,9 +20,6 @@ export class GroupsListComponent implements OnInit {
   ngOnInit() {
     this.groups$ = this.db
       .collection<Group>('groups')
-      .valueChanges({ idField: 'id' });
-    this.clients$ = this.db
-      .collection<Client>('clients')
       .valueChanges({ idField: 'id' });
   }
 

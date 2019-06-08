@@ -12,10 +12,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./groups-add.component.css']
 })
 export class GroupsAddComponent implements OnInit {
+  clients$: Observable<Client[]>;
   editMode: boolean;
   isLoading = false;
   @ViewChild('f', { static: true }) form: NgForm;
-  clients$: Observable<Client[]>;
 
   constructor(
     private afs: AngularFirestore,
@@ -27,6 +27,9 @@ export class GroupsAddComponent implements OnInit {
 
   ngOnInit() {
     this.editMode = this.data && !!this.data.group;
+    this.clients$ = this.afs
+      .collection<Client>('clients')
+      .valueChanges({ idField: 'id' });
     if (this.editMode) {
       setTimeout(() => {
         this.form.setValue({
@@ -35,9 +38,6 @@ export class GroupsAddComponent implements OnInit {
         });
       }, 500);
     }
-    this.clients$ = this.afs
-      .collection<Client>('clients')
-      .valueChanges({ idField: 'id' });
   }
 
   onSubmit(f: NgForm) {
@@ -49,7 +49,6 @@ export class GroupsAddComponent implements OnInit {
     } else {
       p = this.afs.collection<Group>('groups').add(group);
     }
-
     p.then(() => {
       this.snack.open('Group saved', 'Close', {
         duration: 3000
