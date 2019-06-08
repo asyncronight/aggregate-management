@@ -27,13 +27,13 @@ export class ClientsAddComponent implements OnInit {
     this.editMode = this.data && !!this.data.client;
     if (this.editMode) {
       // Use setTimeout to delay the form initialization until
-      // all formControls are registred (500 ms is enough).
+      // all formControls are registred
       setTimeout(() => {
         this.form.setValue({
           name: this.data.client.name,
           description: this.data.client.description
         });
-      }, 500);
+      }, 0);
     }
   }
 
