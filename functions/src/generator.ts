@@ -2,9 +2,11 @@ import { EventContext } from 'firebase-functions';
 // import * as admin from 'firebase-admin';
 import { Report } from './models';
 
-export const handler = (context: EventContext) => {
+export const handler = async (context: EventContext): Promise<string> => {
   const reports: Report[] = [];
-  console.debug(
+  console.log(
     `${reports.length} report${reports.length === 1 ? '' : 's'} genarated.`
   );
+  // throw Error('Some Error');
+  return 'Done';
 };
