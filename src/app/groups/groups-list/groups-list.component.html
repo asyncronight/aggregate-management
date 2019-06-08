@@ -1,3 +1,13 @@
+<button
+  mat-mini-fab
+  type="button"
+  class="new-fab"
+  color="primary"
+  (click)="openNewGroupDialog()"
+  matTooltip="Add a new Group"
+>
+  <mat-icon>add</mat-icon>
+</button>
 <h1>Groups' list</h1>
 <table mat-table [dataSource]="groups$ | async" class="mat-elevation-z1">
   <ng-container matColumnDef="name">
