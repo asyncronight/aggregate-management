@@ -1,0 +1,48 @@
+<p mat-dialog-title>
+  <ng-container *ngIf="!editMode"> Add a new Group </ng-container>
+  <ng-container *ngIf="editMode"> Edit Group </ng-container>
+</p>
+<div mat-dialog-content>
+  <form
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)"
+    fxLayout="column"
+    fxLayoutAlign="space-around stretch"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput ngModel name="name" required />
+      <mat-error>Name is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>
+        clientId
+        <mat-icon matSuffix>ClientId</mat-icon>
+      </mat-label>
+
+      <mat-select matInput ngModel name="clientId">
+        <mat-option *ngFor="let food of clients$ | async" [value]="food.id">
+          {{ food.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error>Description is required</mat-error>
+    </mat-form-field>
+    <div
+      fxLayout="column"
+      fxLayoutAlign="space-between stretch"
+      class="actions"
+    >
+      <mat-spinner [diameter]="30" *ngIf="isLoading"></mat-spinner>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        matTooltip="Save"
+        [disabled]="!f.valid"
+        *ngIf="!isLoading"
+      >
+        <mat-icon>save_alt</mat-icon>
+      </button>
+    </div>
+  </form>
+</div>

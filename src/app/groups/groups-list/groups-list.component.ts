@@ -3,7 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { Group } from 'src/app/models';
+import { Group, Client } from 'src/app/models';
+import { GroupsAddComponent } from '../groups-add/groups-add.component';
 
 @Component({
   selector: 'app-groups-list',
@@ -12,7 +13,9 @@ import { Group } from 'src/app/models';
 })
 export class GroupsListComponent implements OnInit {
   groups$: Observable<Group[]>;
-  displayedColumns = ['name', 'clientName', 'edit', 'delete'];
+  clients$: Observable<Client[]>;
+
+  displayedColumns = ['name', 'clientId', 'edit', 'delete'];
 
   constructor(private dialog: MatDialog, private db: AngularFirestore) {}
 
@@ -20,6 +23,22 @@ export class GroupsListComponent implements OnInit {
     this.groups$ = this.db
       .collection<Group>('groups')
       .valueChanges({ idField: 'id' });
+    this.clients$ = this.db
+      .collection<Client>('clients')
+      .valueChanges({ idField: 'id' });
+  }
+
+  openNewGroupDialog() {
+    this.dialog.open(GroupsAddComponent, {
+      width: '400px'
+    });
+  }
+
+  openEditGroupDialog(group: Group) {
+    this.dialog.open(GroupsAddComponent, {
+      width: '400px',
+      data: { group }
+    });
   }
 
   deleteGroup(id: string) {

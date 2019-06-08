@@ -6,9 +6,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { GroupMaterialModule } from './group-material.module';
 import { GroupsRoutingModule } from './groups-routing.module';
 import { GroupsListComponent } from './groups-list/groups-list.component';
+import { GroupsAddComponent } from './groups-add/groups-add.component';
 
 @NgModule({
-  declarations: [GroupsListComponent],
+  declarations: [GroupsListComponent, GroupsAddComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
@@ -16,6 +17,7 @@ import { GroupsListComponent } from './groups-list/groups-list.component';
     AngularFirestoreModule,
     GroupMaterialModule,
     GroupsRoutingModule
-  ]
+  ],
+  entryComponents: [GroupsAddComponent]
 })
 export class GroupsModule {}
