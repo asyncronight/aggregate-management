@@ -25,6 +25,7 @@ export const listener = functions.https.onRequest(dataHandler);
  */
 export const generator = functions.pubsub
   .schedule('0 0 * * *')
+  .timeZone('UTC')
   .onRun(generatorHandler);
 
 /**
