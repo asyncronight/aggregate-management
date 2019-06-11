@@ -14,17 +14,6 @@
       <input matInput ngModel name="name" required />
       <mat-error>Name is required</mat-error>
     </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>
-        Client Name
-      </mat-label>
-      <mat-select ngModel name="clientId">
-        <mat-option *ngFor="let client of clients$ | async" [value]="client.id">
-          {{ client.name }}
-        </mat-option>
-      </mat-select>
-      <mat-error>Client is required</mat-error>
-    </mat-form-field>
     <div
       fxLayout="column"
       fxLayoutAlign="space-between stretch"

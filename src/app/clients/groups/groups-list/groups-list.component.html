@@ -1,0 +1,63 @@
+<ng-container *ngIf="client$ | async as client">
+  <button
+    mat-mini-fab
+    type="button"
+    class="new-fab"
+    color="primary"
+    (click)="openNewGroupDialog(client.id)"
+    matTooltip="Add a new group"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+  <a
+    mat-mini-fab
+    class="back-fab"
+    color="default"
+    matTooltip="Go back"
+    routerLink="../../.."
+  >
+    <mat-icon>arrow_back</mat-icon>
+  </a>
+  <h2>Groups' list</h2>
+  <h3>Client: {{ client.name }}</h3>
+  <table mat-table [dataSource]="groups$ | async" class="mat-elevation-z1">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">
+        <a [routerLink]="[element.id, 'trucks']" matTooltip="View trucks">{{
+          element.name
+        }}</a>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          type="button"
+          color="primary"
+          (click)="openEditGroupDialog(client.id, element)"
+          matTooltip="Edit"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          type="button"
+          color="warn"
+          (click)="deleteGroup(client.id, element.id)"
+          matTooltip="Delete"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</ng-container>

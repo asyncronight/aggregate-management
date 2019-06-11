@@ -4,7 +4,14 @@
   bottom: 25px;
 }
 
-h1 {
+.back-fab.mat-mini-fab {
+  position: fixed;
+  left: 5%;
+  top: 75px;
+}
+
+h2,
+h3 {
   text-align: center;
 }
 

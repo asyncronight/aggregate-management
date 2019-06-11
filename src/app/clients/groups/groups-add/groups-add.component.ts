@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Client, Group } from 'src/app/models';
-import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore';
+
+import { Group } from '../../../models';
 
 @Component({
   selector: 'app-groups-add',
@@ -12,7 +12,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./groups-add.component.css']
 })
 export class GroupsAddComponent implements OnInit {
-  clients$: Observable<Client[]>;
   editMode: boolean;
   isLoading = false;
   @ViewChild('f', { static: true }) form: NgForm;
@@ -21,22 +20,18 @@ export class GroupsAddComponent implements OnInit {
     private afs: AngularFirestore,
     private dialogRef: MatDialogRef<GroupsAddComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public data: { group: Group },
+    public data: { idClient: string; group: Group },
     private snack: MatSnackBar
   ) {}
 
   ngOnInit() {
     this.editMode = this.data && !!this.data.group;
-    this.clients$ = this.afs
-      .collection<Client>('clients')
-      .valueChanges({ idField: 'id' });
     if (this.editMode) {
       setTimeout(() => {
         this.form.setValue({
-          name: this.data.group.name,
-          clientId: this.data.group.clientId
+          name: this.data.group.name
         });
-      }, 500);
+      }, 0);
     }
   }
 
@@ -45,21 +40,26 @@ export class GroupsAddComponent implements OnInit {
     const group: Group = f.value;
     let p: Promise<any>;
     if (this.editMode) {
-      p = this.afs.doc<Group>(`groups/${this.data.group.id}`).update(group);
+      p = this.afs
+        .doc<Group>(
+          `clients/${this.data.idClient}/groups/${this.data.group.id}`
+        )
+        .update(group);
     } else {
-      p = this.afs.collection<Group>('groups').add(group);
+      p = this.afs
+        .collection<Group>(`clients/${this.data.idClient}/groups`)
+        .add(group);
     }
     p.then(() => {
       this.snack.open('Group saved', 'Close', {
         duration: 3000
       });
       this.dialogRef.close();
-    })
-      .catch(() => {
-        this.snack.open('An error occured', 'Close', {
-          duration: 3000
-        });
-      })
-      .finally(() => (this.isLoading = false));
+    }).catch(() => {
+      this.snack.open('An error occured', 'Close', {
+        duration: 3000
+      });
+      this.isLoading = false;
+    });
   }
 }

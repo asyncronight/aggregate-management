@@ -6,7 +6,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   exports: [
@@ -17,7 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatProgressSpinnerModule,
     MatInputModule,
-    MatSelectModule
+    MatTooltipModule
   ]
 })
 export class GroupMaterialModule {}
