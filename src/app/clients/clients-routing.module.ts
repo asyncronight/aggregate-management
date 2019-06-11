@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { ClientsListComponent } from './clients-list/clients-list.component';
 import { AuthGuard } from '../auth.guard';
 
@@ -10,7 +11,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: ':id/groups',
+    path: ':idClient/groups',
     loadChildren: () =>
       import('./groups/groups.module').then(m => m.GroupsModule),
     canLoad: [AuthGuard]

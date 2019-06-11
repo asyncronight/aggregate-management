@@ -26,8 +26,9 @@ export class GroupsListComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
+      const idClient = params.get('idClient');
       this.client$ = this.db
-        .doc<Client>(`clients/${params.get('id')}`)
+        .doc<Client>(`clients/${idClient}`)
         .snapshotChanges()
         .pipe(
           map(doc => {
@@ -39,7 +40,7 @@ export class GroupsListComponent implements OnInit {
           })
         );
       this.groups$ = this.db
-        .collection<Group>(`clients/${params.get('id')}/groups`)
+        .collection<Group>(`clients/${idClient}/groups`)
         .valueChanges({ idField: 'id' });
     });
   }
