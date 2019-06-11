@@ -43,11 +43,11 @@ export class ClientsListComponent implements OnInit {
     // Show an alert (ex: 'Please delete all groups first') instead
     if (confirm('Are you sure?')) {
       this.db
-        .collection<Group>('groups', ref => ref.where('clientId', '==', id))
+        .collection<Group>(`clients/${id}/groups`)
         .valueChanges()
         .pipe(
           take(1),
-          map(clients => clients.length > 0)
+          map(groups => groups.length > 0)
         )
         .subscribe(hasGroups => {
           if (hasGroups) {

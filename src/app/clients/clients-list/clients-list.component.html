@@ -4,15 +4,19 @@
   class="new-fab"
   color="primary"
   (click)="openNewClientDialog()"
-  matTooltip="Add a new charge"
+  matTooltip="Add a new client"
 >
   <mat-icon>add</mat-icon>
 </button>
-<h1>Clients' list</h1>
+<h2>Clients' list</h2>
 <table mat-table [dataSource]="clients$ | async" class="mat-elevation-z1">
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef>Name</th>
-    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    <td mat-cell *matCellDef="let element">
+      <a [routerLink]="[element.id, 'groups']" matTooltip="View groups">{{
+        element.name
+      }}</a>
+    </td>
   </ng-container>
   <ng-container matColumnDef="description">
     <th mat-header-cell *matHeaderCellDef>Desciption</th>

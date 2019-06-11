@@ -12,7 +12,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   exports: [
@@ -28,8 +27,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatSnackBarModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
-    MatInputModule,
-    MatSelectModule
+    MatInputModule
   ]
 })
 export class AppMaterialModule {}

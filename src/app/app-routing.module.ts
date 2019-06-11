@@ -12,12 +12,6 @@ const routes: Routes = [
       import('./clients/clients.module').then(m => m.ClientsModule),
     canLoad: [AuthGuard]
   },
-  {
-    path: 'groups',
-    loadChildren: () =>
-      import('./groups/groups.module').then(m => m.GroupsModule),
-    canLoad: [AuthGuard]
-  },
   { path: '**', redirectTo: '' }
 ];
 

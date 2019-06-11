@@ -8,6 +8,12 @@ const routes: Routes = [
     path: '',
     component: ClientsListComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: ':id/groups',
+    loadChildren: () =>
+      import('./groups/groups.module').then(m => m.GroupsModule),
+    canLoad: [AuthGuard]
   }
 ];
 
