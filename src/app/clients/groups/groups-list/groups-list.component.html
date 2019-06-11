@@ -4,7 +4,7 @@
     type="button"
     class="new-fab"
     color="primary"
-    (click)="openNewGroupDialog(client.id)"
+    (click)="openNewGroupDialog()"
     matTooltip="Add a new group"
   >
     <mat-icon>add</mat-icon>
@@ -36,7 +36,7 @@
           mat-icon-button
           type="button"
           color="primary"
-          (click)="openEditGroupDialog(client.id, element)"
+          (click)="openEditGroupDialog(element)"
           matTooltip="Edit"
         >
           <mat-icon>edit</mat-icon>
@@ -50,7 +50,7 @@
           mat-icon-button
           type="button"
           color="warn"
-          (click)="deleteGroup(client.id, element.id)"
+          (click)="deleteGroup(element.id)"
           matTooltip="Delete"
         >
           <mat-icon>delete</mat-icon>

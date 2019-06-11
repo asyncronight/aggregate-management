@@ -16,6 +16,7 @@ import { GroupsAddComponent } from '../groups-add/groups-add.component';
 export class GroupsListComponent implements OnInit {
   client$: Observable<Client>;
   groups$: Observable<Group[]>;
+  idClient: string;
   displayedColumns = ['name', 'edit', 'delete'];
 
   constructor(
@@ -26,9 +27,9 @@ export class GroupsListComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      const idClient = params.get('idClient');
+      this.idClient = params.get('idClient');
       this.client$ = this.db
-        .doc<Client>(`clients/${idClient}`)
+        .doc<Client>(`clients/${this.idClient}`)
         .snapshotChanges()
         .pipe(
           map(doc => {
@@ -40,32 +41,32 @@ export class GroupsListComponent implements OnInit {
           })
         );
       this.groups$ = this.db
-        .collection<Group>(`clients/${idClient}/groups`)
+        .collection<Group>(`clients/${this.idClient}/groups`)
         .valueChanges({ idField: 'id' });
     });
   }
 
-  openNewGroupDialog(idClient: string) {
+  openNewGroupDialog() {
     this.dialog.open(GroupsAddComponent, {
       width: '400px',
-      data: { idClient }
+      data: { idClient: this.idClient }
     });
   }
 
-  openEditGroupDialog(idClient: string, group: Group) {
+  openEditGroupDialog(group: Group) {
     this.dialog.open(GroupsAddComponent, {
       width: '400px',
-      data: { idClient, group }
+      data: { idClient: this.idClient, group }
     });
   }
 
-  deleteGroup(idClient: string, idGroup: string) {
+  deleteGroup(idGroup: string) {
     // Todo: don't delete if this group has any trucks
     // (so the database doesn't contain trucks with no groups)
     // Show an alert (ex: 'Please delete all trucks first') instead
     if (confirm('Are you sure?')) {
       this.db
-        .collection<Truck>(`clients/${idClient}/groups/${idGroup}/trucks`)
+        .collection<Truck>(`clients/${this.idClient}/groups/${idGroup}/trucks`)
         .valueChanges()
         .pipe(
           take(1),
@@ -75,7 +76,7 @@ export class GroupsListComponent implements OnInit {
           if (hasTrucks) {
             alert('Please delete all trucks first');
           } else {
-            this.db.doc(`clients/${idClient}/groups/${idGroup}`).delete();
+            this.db.doc(`clients/${this.idClient}/groups/${idGroup}`).delete();
           }
         });
     }
