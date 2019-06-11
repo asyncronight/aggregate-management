@@ -28,3 +28,7 @@ table {
 .mat-column-delete {
   width: 30px;
 }
+
+mat-spinner {
+  margin: auto;
+}
