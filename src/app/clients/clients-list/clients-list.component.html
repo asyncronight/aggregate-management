@@ -30,11 +30,11 @@
           mat-icon-button
           type="button"
           color="primary"
-          (click)="openEmailDialog(element)"
+          (click)="openEmailDialog(element.id)"
           matTooltip="View emails"
         >
           <mat-icon
-            [matBadge]="element.emails.length"
+            [matBadge]="element.emails ? element.emails.length : 0"
             matBadgeColor="accent"
             matBadgePosition="before"
             matBadgeSize="small"

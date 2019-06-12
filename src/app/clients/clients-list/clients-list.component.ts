@@ -22,16 +22,7 @@ export class ClientsListComponent implements OnInit {
   ngOnInit() {
     this.clients$ = this.db
       .collection<Client>('clients')
-      .valueChanges({ idField: 'id' })
-      .pipe(
-        tap(clients => {
-          clients.forEach(client => {
-            if (!client.emails) {
-              client.emails = [];
-            }
-          });
-        })
-      );
+      .valueChanges({ idField: 'id' });
   }
 
   openNewClientDialog() {
@@ -47,10 +38,11 @@ export class ClientsListComponent implements OnInit {
     });
   }
 
-  openEmailDialog(client: Client) {
+  openEmailDialog(id: string) {
     this.dialog.open(ClientsEmailsComponent, {
       width: '600px',
-      data: { client }
+      data: { id },
+      autoFocus: false
     });
   }
 
