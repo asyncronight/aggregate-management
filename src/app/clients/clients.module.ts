@@ -8,9 +8,14 @@ import { ClientsAddComponent } from './clients-add/clients-add.component';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ClientsEmailsComponent } from './clients-emails/clients-emails.component';
 
 @NgModule({
-  declarations: [ClientsListComponent, ClientsAddComponent],
+  declarations: [
+    ClientsListComponent,
+    ClientsAddComponent,
+    ClientsEmailsComponent
+  ],
   imports: [
     CommonModule,
     ClientMaterialModule,
@@ -19,6 +24,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FormsModule,
     AngularFirestoreModule
   ],
-  entryComponents: [ClientsAddComponent]
+  entryComponents: [ClientsAddComponent, ClientsEmailsComponent]
 })
 export class ClientsModule {}

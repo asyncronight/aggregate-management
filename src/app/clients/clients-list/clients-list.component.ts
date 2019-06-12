@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { map, take, tap } from 'rxjs/operators';
 
 import { ClientsAddComponent } from '../clients-add/clients-add.component';
 import { Client, Group } from 'src/app/models';
+import { ClientsEmailsComponent } from '../clients-emails/clients-emails.component';
 
 @Component({
   selector: 'app-clients-list',
@@ -14,14 +15,23 @@ import { Client, Group } from 'src/app/models';
 })
 export class ClientsListComponent implements OnInit {
   clients$: Observable<Client[]>;
-  displayedColumns = ['name', 'description', 'edit', 'delete'];
+  displayedColumns = ['name', 'description', 'emails', 'edit', 'delete'];
 
   constructor(private dialog: MatDialog, private db: AngularFirestore) {}
 
   ngOnInit() {
     this.clients$ = this.db
       .collection<Client>('clients')
-      .valueChanges({ idField: 'id' });
+      .valueChanges({ idField: 'id' })
+      .pipe(
+        tap(clients => {
+          clients.forEach(client => {
+            if (!client.emails) {
+              client.emails = [];
+            }
+          });
+        })
+      );
   }
 
   openNewClientDialog() {
@@ -33,6 +43,13 @@ export class ClientsListComponent implements OnInit {
   openEditClientDialog(client: Client) {
     this.dialog.open(ClientsAddComponent, {
       width: '400px',
+      data: { client }
+    });
+  }
+
+  openEmailDialog(client: Client) {
+    this.dialog.open(ClientsEmailsComponent, {
+      width: '600px',
       data: { client }
     });
   }

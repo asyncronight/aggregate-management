@@ -23,6 +23,26 @@
       <th mat-header-cell *matHeaderCellDef>Desciption</th>
       <td mat-cell *matCellDef="let element">{{ element.description }}</td>
     </ng-container>
+    <ng-container matColumnDef="emails">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          type="button"
+          color="primary"
+          (click)="openEmailDialog(element)"
+          matTooltip="View emails"
+        >
+          <mat-icon
+            [matBadge]="element.emails.length"
+            matBadgeColor="accent"
+            matBadgePosition="before"
+            matBadgeSize="small"
+            >email</mat-icon
+          >
+        </button>
+      </td>
+    </ng-container>
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">

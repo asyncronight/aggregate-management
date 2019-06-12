@@ -22,6 +22,10 @@ table {
   width: 30px;
 }
 
+.mat-column-emails {
+  width: 30px;
+}
+
 mat-spinner {
   margin: auto;
 }

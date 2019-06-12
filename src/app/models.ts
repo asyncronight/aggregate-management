@@ -2,6 +2,7 @@ export interface Client {
   id?: string;
   name: string;
   description: string;
+  emails: { email: string; active: boolean }[];
 }
 
 export interface Group {
