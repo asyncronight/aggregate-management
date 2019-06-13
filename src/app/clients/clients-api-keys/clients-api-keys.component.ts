@@ -67,7 +67,7 @@ export class ClientsApiKeysComponent implements OnInit {
   revokeKey() {
     if (
       confirm(
-        "Devices using this key won't be able to send data to the server.\nContinue?"
+        `Devices using this key won't be able to send data to the server.\nContinue?`
       )
     ) {
       this.db.doc<Client>(`clients/${this.data.id}`).update({ apiKey: null });
@@ -75,12 +75,11 @@ export class ClientsApiKeysComponent implements OnInit {
   }
 
   private hash(key: string): number {
-    return key
-      .split('')
-      .reduce(
-        (prevHash, currVal) =>
-          ((prevHash << 5) - prevHash + currVal.charCodeAt(0)) | 0,
-        0
-      );
+    return key.split('').reduce(
+      (prevHash, currVal) =>
+        // tslint:disable-next-line: no-bitwise
+        ((prevHash << 5) - prevHash + currVal.charCodeAt(0)) | 0,
+      0
+    );
   }
 }
