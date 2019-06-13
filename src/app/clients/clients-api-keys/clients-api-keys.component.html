@@ -1,5 +1,5 @@
 <ng-container *ngIf="client$ | async as client">
-  <p mat-dialog-title>{{ client.name }} | API key</p>
+  <p mat-dialog-title>API key</p>
   <div mat-dialog-content>
     <mat-list>
       <mat-list-item>
@@ -12,6 +12,11 @@
       </mat-list-item>
       <mat-list-item>
         The key should be&nbsp;<b>copied</b>&nbsp;and stored securly.
+      </mat-list-item>
+      <mat-list-item>
+        Devices/Trucks using this key should belong to one of &nbsp;
+        <b>{{ client.name }}</b>
+        's groups.
       </mat-list-item>
     </mat-list>
     <mat-divider></mat-divider>
@@ -36,7 +41,6 @@
         *ngIf="apiKey"
         color="primary"
         (click)="saveKey()"
-        [disabled]="loading"
       >
         Save
       </button>

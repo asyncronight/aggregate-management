@@ -15,7 +15,6 @@ import { Client } from 'src/app/models';
 export class ClientsApiKeysComponent implements OnInit {
   client$: Observable<Client>;
   apiKey: string;
-  loading = false;
 
   constructor(
     private db: AngularFirestore,
@@ -53,7 +52,6 @@ export class ClientsApiKeysComponent implements OnInit {
     ) {
       return;
     }
-    this.loading = true;
     this.db
       .doc<Client>(`clients/${this.data.id}`)
       .update({
@@ -63,10 +61,7 @@ export class ClientsApiKeysComponent implements OnInit {
           hash: this.hash(this.apiKey)
         }
       })
-      .finally(() => {
-        this.loading = false;
-        this.apiKey = null;
-      });
+      .finally(() => (this.apiKey = null));
   }
 
   revokeKey() {
