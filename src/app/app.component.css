@@ -20,11 +20,18 @@ mat-sidenav-content {
 
 .footer {
   height: 40px;
-  background-color: rgb(236, 236, 236);
+  background-color: rgba(0, 0, 0, 0.01);
   position: fixed;
   bottom: 0px;
   max-width: 250px;
   font-size: 12px;
+  border-top: 0.1px solid lightgray;
+  text-align: center;
+}
+
+.footer a {
+  color: blue;
+  text-decoration-line: none;
 }
 
 .toolbar {

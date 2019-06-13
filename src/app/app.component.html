@@ -33,6 +33,7 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="over">
     <mat-nav-list *ngIf="isAuthenticated">
+      <mat-divider></mat-divider>
       <mat-list-item routerLinkActive="active">
         <a matLine routerLink="/clients">Clients</a>
         <button mat-icon-button>
@@ -41,20 +42,16 @@
       </mat-list-item>
       <mat-divider></mat-divider>
     </mat-nav-list>
-    <mat-toolbar
-      class="footer mat-elevation-z2"
-      fxLayoutAlign="center center"
-      fxLayoutGap="10"
-    >
-      <i
-        >Mecaworks © 2019 -
-        <a
-          href="https://github.com/mecaworks/track-it/issues/new"
-          target="_blank"
-          matTooltip="Report a bug or request a new feature"
-          >v0.0.1</a
-        ></i
+    <mat-toolbar class="footer" fxLayoutAlign="center center">
+      <b>Mecaworks © 2019</b>&nbsp;(
+      <a
+        href="https://github.com/mecaworks/track-it/issues/new"
+        target="_blank"
+        matTooltip="Report a bug or request a new feature"
       >
+        v0.0.1
+      </a>
+      )
     </mat-toolbar>
   </mat-sidenav>
   <mat-sidenav-content>
