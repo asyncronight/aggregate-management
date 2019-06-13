@@ -16,22 +16,8 @@ import { take, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate, CanLoad {
+export class AuthGuard implements CanLoad {
   constructor(private auth: AngularFireAuth, private router: Router) {}
-
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
-    return this.auth.authState.pipe(
-      take(1),
-      map(res => (res ? true : this.router.createUrlTree(['/'])))
-    );
-  }
 
   canLoad(
     route: Route,

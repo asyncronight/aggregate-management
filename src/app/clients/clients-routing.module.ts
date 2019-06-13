@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 
 import { ClientsListComponent } from './clients-list/clients-list.component';
 import { AuthGuard } from '../auth.guard';
@@ -8,7 +9,7 @@ const routes: Routes = [
   {
     path: '',
     component: ClientsListComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AngularFireAuthGuard]
   },
   {
     path: ':idClient/groups',
