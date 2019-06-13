@@ -1,0 +1,23 @@
+.header {
+  background: #00000042;
+  color: white;
+  margin-top: 80px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 36px;
+  font-weight: normal;
+}
+
+.header p {
+  border-radius: 5px 25px;
+  background: #000000ad;
+  font-size: 18px;
+  font-family: monospace;
+  padding: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+}

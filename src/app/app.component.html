@@ -35,7 +35,7 @@
     <mat-nav-list *ngIf="isAuthenticated">
       <mat-divider></mat-divider>
       <mat-list-item routerLinkActive="active">
-        <a matLine routerLink="/clients">Clients</a>
+        <a matLine routerLink="/clients" (click)="sidenav.close()">Clients</a>
         <button mat-icon-button>
           <mat-icon>keyboard_arrow_right</mat-icon>
         </button>
