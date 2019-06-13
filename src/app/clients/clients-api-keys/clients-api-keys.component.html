@@ -1,3 +1,45 @@
-<p>
-  clients-api-keys works!
-</p>
+<ng-container *ngIf="client$ | async as client">
+  <p mat-dialog-title>{{ client.name }} | API key</p>
+  <div mat-dialog-content>
+    <mat-list>
+      <mat-list-item>
+        API keys are used to authenticate Arduino devices when sending data to
+        the server (Included in the 'Authorization' header).
+      </mat-list-item>
+      <mat-list-item>
+        The key is displayed&nbsp;<b>only once</b>&nbsp;when generated and
+        cannot be restored.
+      </mat-list-item>
+      <mat-list-item>
+        The key should be&nbsp;<b>copied</b>&nbsp;and stored securly.
+      </mat-list-item>
+    </mat-list>
+    <mat-divider></mat-divider>
+    <div *ngIf="client.apiKey; else addKey">
+      <p>Prefix: {{ client.apiKey.prefix }}***-*******-*******</p>
+      <p>Time: {{ client.apiKey.time.toDate() | date: 'medium' }}</p>
+      <button mat-raised-button color="warn" (click)="revokeKey()">
+        Revoke API key
+      </button>
+    </div>
+    <ng-template #addKey>
+      <button mat-raised-button (click)="generateKey()">
+        Generate a new API key
+      </button>
+      <p *ngIf="apiKey">
+        <code>
+          <b> {{ apiKey }} </b>
+        </code>
+      </p>
+      <button
+        mat-raised-button
+        *ngIf="apiKey"
+        color="primary"
+        (click)="saveKey()"
+        [disabled]="loading"
+      >
+        Save
+      </button>
+    </ng-template>
+  </div>
+</ng-container>

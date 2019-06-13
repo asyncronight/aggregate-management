@@ -1,8 +1,11 @@
+import { firestore } from 'firebase/app';
+
 export interface Client {
   id?: string;
   name: string;
   description: string;
   emails: { email: string; active: boolean }[];
+  apiKey: { prefix: string; time: firestore.Timestamp; hash: number };
 }
 
 export interface Group {

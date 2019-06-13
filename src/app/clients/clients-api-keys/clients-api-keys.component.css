@@ -1,0 +1,14 @@
+.mat-dialog-title {
+  text-align: center;
+}
+
+mat-divider {
+  margin: 10px;
+}
+
+code {
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
