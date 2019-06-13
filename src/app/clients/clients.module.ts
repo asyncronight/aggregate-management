@@ -9,12 +9,14 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ClientsEmailsComponent } from './clients-emails/clients-emails.component';
+import { ClientsApiKeysComponent } from './clients-api-keys/clients-api-keys.component';
 
 @NgModule({
   declarations: [
     ClientsListComponent,
     ClientsAddComponent,
-    ClientsEmailsComponent
+    ClientsEmailsComponent,
+    ClientsApiKeysComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,10 @@ import { ClientsEmailsComponent } from './clients-emails/clients-emails.componen
     FormsModule,
     AngularFirestoreModule
   ],
-  entryComponents: [ClientsAddComponent, ClientsEmailsComponent]
+  entryComponents: [
+    ClientsAddComponent,
+    ClientsEmailsComponent,
+    ClientsApiKeysComponent
+  ]
 })
 export class ClientsModule {}

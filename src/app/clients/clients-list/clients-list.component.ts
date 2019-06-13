@@ -7,6 +7,7 @@ import { map, take, tap } from 'rxjs/operators';
 import { ClientsAddComponent } from '../clients-add/clients-add.component';
 import { Client, Group } from 'src/app/models';
 import { ClientsEmailsComponent } from '../clients-emails/clients-emails.component';
+import { ClientsApiKeysComponent } from '../clients-api-keys/clients-api-keys.component';
 
 @Component({
   selector: 'app-clients-list',
@@ -15,7 +16,14 @@ import { ClientsEmailsComponent } from '../clients-emails/clients-emails.compone
 })
 export class ClientsListComponent implements OnInit {
   clients$: Observable<Client[]>;
-  displayedColumns = ['name', 'description', 'emails', 'edit', 'delete'];
+  displayedColumns = [
+    'name',
+    'description',
+    'keys',
+    'emails',
+    'edit',
+    'delete'
+  ];
 
   constructor(private dialog: MatDialog, private db: AngularFirestore) {}
 
@@ -43,6 +51,13 @@ export class ClientsListComponent implements OnInit {
       width: '600px',
       data: { id },
       autoFocus: false
+    });
+  }
+
+  openAPIKeysDialog(id: string) {
+    this.dialog.open(ClientsApiKeysComponent, {
+      width: '600px',
+      data: { id }
     });
   }
 
