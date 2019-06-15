@@ -1,29 +1,34 @@
 <ng-container *ngIf="client$ | async as client">
   <p mat-dialog-title>API key</p>
   <div mat-dialog-content>
-    <mat-list>
-      <mat-list-item>
-        API keys are used to authenticate Arduino devices when sending data to
-        the server (Included in the 'Authorization' header).
-      </mat-list-item>
-      <mat-list-item>
-        The key is displayed&nbsp;<b>only once</b>&nbsp;when generated and
-        cannot be restored.
-      </mat-list-item>
-      <mat-list-item>
-        The key should be&nbsp;<b>copied</b>&nbsp;and stored securly.
-      </mat-list-item>
-      <mat-list-item>
-        Devices/Trucks using this key should belong to one of &nbsp;
-        <b>{{ client.name }}</b>
-        's groups.
-      </mat-list-item>
-    </mat-list>
+    <p>
+      API keys are used to authenticate Arduino devices when sending data to the
+      server (Included in the 'Authorization' header).
+    </p>
+    <p>
+      The key is displayed <b>only once</b> when generated and cannot be
+      restored.
+    </p>
+    <p>The key should be <b>copied</b> and stored securly.</p>
+    <p>
+      Devices/Trucks using this key should belong to one of
+      <b>{{ client.name }}</b>
+      's groups.
+    </p>
+    <p>
+      When revoking a key, devices that are using it will be
+      <b>blocked immediatly</b>
+      and no further data will be accepted by the server.
+    </p>
     <mat-divider></mat-divider>
     <div *ngIf="client.apiKey; else addKey">
       <p>Prefix: {{ client.apiKey.prefix }}***-*******-*******</p>
       <p>Time: {{ client.apiKey.time.toDate() | date: 'medium' }}</p>
-      <button mat-raised-button color="warn" (click)="revokeKey()">
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="revokeKey(client.apiKey.prefix)"
+      >
         Revoke API key
       </button>
     </div>

@@ -64,11 +64,12 @@ export class ClientsApiKeysComponent implements OnInit {
       .finally(() => (this.apiKey = null));
   }
 
-  revokeKey() {
+  revokeKey(prefix: string) {
     if (
-      confirm(
-        `Devices using this key won't be able to send data to the server.\nContinue?`
-      )
+      prompt(
+        `Devices using this key won't be able to send ` +
+          `data to the server.\nEnter the key prefix to confirm.`
+      ) === prefix
     ) {
       this.db.doc<Client>(`clients/${this.data.id}`).update({ apiKey: null });
     }
