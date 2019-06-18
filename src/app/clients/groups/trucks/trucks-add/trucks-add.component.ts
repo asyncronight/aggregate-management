@@ -50,11 +50,16 @@ export class TrucksAddComponent implements OnInit {
         )
         .update(truck);
     } else {
+      const id = this.afs.createId();
       p = this.afs
-        .collection<Truck>(
+        .collection(
           `clients/${this.data.idClient}/groups/${this.data.idGroup}/trucks`
         )
-        .add(truck);
+        .doc<Truck>(id)
+        .set({
+          ...truck,
+          id
+        });
     }
     p.then(() => {
       this.snack.open('Truck saved', 'Close', {
