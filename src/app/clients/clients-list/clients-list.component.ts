@@ -82,4 +82,8 @@ export class ClientsListComponent implements OnInit {
         });
     }
   }
+
+  getActiveEmails(emails: any[]): number {
+    return emails ? emails.filter(email => email.active).length : 0;
+  }
 }

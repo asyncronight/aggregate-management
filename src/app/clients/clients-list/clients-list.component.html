@@ -48,7 +48,7 @@
           matTooltip="View emails"
         >
           <mat-icon
-            [matBadge]="element.emails ? element.emails.length : 0"
+            [matBadge]="getActiveEmails(element.emails)"
             matBadgeColor="accent"
             matBadgePosition="before"
             matBadgeSize="small"
