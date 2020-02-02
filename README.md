@@ -1,6 +1,6 @@
 <div align="center">
   <img src="./src/favicon.ico" width="200" alt="Track It Logo" />
-  <h2>Track It</h2>
+  <h2>IoT Solution: Aggregates Management (Wi-Hu)</h2>
 
 ![GitHub release](https://img.shields.io/github/release/mecaworks/track-it.svg?color=%23f441be)
 [![Build Status](https://travis-ci.org/mecaworks/track-it.svg?branch=master)](https://travis-ci.org/mecaworks/track-it)
@@ -11,7 +11,35 @@
 
 ---
 
-A fully-implemented, zero-human-interaction solution to track construction machinery and report production status
+### Abstract:
+Wi-Hu est une solution IoT pour les camions à bennes et semi remorques dédiés à l'approvisionnement des agrégats.
+
+Sans intervention humaine et en temps réel, à chaque déchargement du matériau, un bon de livraison se crée automatiquement indiquant la quantité déchargée, la position GPS du déchargement, l'heure du déchargement et la qualité du déchargement (déchargement partiel ou Complet).
+
+Un tableau de bord intelligents et dynamique présente des graphiques de productivité, une cartes géographique des déchargement, des statistiques et des indicateurs de performances organisationnels et décisionnels.
+
+### Description :
+The performance of a dump truck is calculated based on the number of tonnes established per kilometer.
+
+In industry 4.0 standards, our team has invented, designed and developed an intelligent IoT Solution which calculates:
+- The number of trip of each dump truck installed
+- The weight carried in tonnes for each trip (Invention)
+- GPS position of the unloading location
+- Fleet statistics and comparison
+- Dashboard ( performance indicators)
+
+The project is made up of two parts:
+1 - Hardware: A microcontroller which receives information from several sensors and processes the signals. And it sends the data to the cloud database for processing
+2 - Software: data analyze and calculation of statistics.
+
+### Technology used:
+- Modelization : StarUML - Pen and Paper
+- Back-end: NodeJS - Google Firestore - Cloud functions
+- Front-end: Typescript - Angular - Firebase SDK - Material Design
+- Project managment: GitHub projects, milestones and releases
+- Deployment: Travis CI - Cloud Functions - Firebase Hosting
+
+---
 
 ## Development server (angular cli)
 
@@ -46,14 +74,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
   > This will deploy the angular web app and the back end functions.
 
   > The deployment phase will lint and build the projects first.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## Further help
 
